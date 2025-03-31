@@ -55,7 +55,8 @@ def train(args):
     optimizer = Adam(model.parameters(), lr=train_config['lr'])
     criterion = torch.nn.MSELoss()
 
-    # Run training 
+    # Run training
+    global_step = 0 
     for epoch_idx in range(num_epochs):
         losses = []
         for im in tqdm(mnist_loader):
@@ -76,6 +77,10 @@ def train(args):
             losses.append(loss.item())
             loss.backward()
             optimizer.step()
+
+            global_step += 1
+            if global_step % 1000 == 0:
+                print("Step: {} | Loss: {:.4f}".format(global_step, loss.item()))
         print('Finished epoch: {}  |  Loss: {:4f}'.format(
             epoch_idx + 1,
             np.mean(losses),

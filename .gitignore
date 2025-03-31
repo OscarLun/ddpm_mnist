@@ -1,4 +1,3 @@
-
 # Ignore pycharm and system files
 .DS_Store
 *.idea
