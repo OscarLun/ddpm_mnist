@@ -80,7 +80,8 @@ def train(args):
 
             global_step += 1
             if global_step % 1000 == 0:
-                print("Step: {} | Loss: {:.4f}".format(global_step, loss.item()))
+                print("Step: {} | Loss: {:.4f}".format(global_step, np.mean(losses)))
+                
         print('Finished epoch: {}  |  Loss: {:4f}'.format(
             epoch_idx + 1,
             np.mean(losses),
